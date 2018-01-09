@@ -21,13 +21,21 @@
   "author": "Vandium Software, Inc.",
   "license": "BSD-3-Clause",
   "dependencies": {
+    "assert": "^1.4.1",
+    "babel-cli": "^6.26.0",
+    "eslint": "^4.15.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.5.1",
+    "prettier-eslint": "^8.7.1",
     "vandium-utils": "^1.1.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "freshy": "^1.0.2",
     "istanbul": "^0.4.3",
-    "joi": "^8.4.2",
+    "joi": "^13.1.0",
     "lov": "^1.2.1",
     "mocha": "^2.5.3",
     "require-blocker": "^1.0.0",
