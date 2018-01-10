@@ -276,5 +276,114 @@ describe( 'lib/index', function() {
             let result3 = joi.validate( 'forty-two', schema );
             expect( result3.error ).to.exist;
         });
+
+        it( ' when ', function() {
+            const config = {
+                a: {
+                    '@type': 'string',
+                    empty: '',
+                },
+                b: {
+                    '@type': 'string',
+                    empty: '',
+                    when: {
+                        condition: 'a',
+                        options: {
+                            is: 'bird',
+                            then: {
+                                required: null,
+                            },
+                            otherwise: {
+                                optional: null,
+                            },
+                        },
+                    },
+                },
+            };
+
+            let schema = parser.parse( config );
+
+            expect( schema.isJoi ).to.be.true;
+
+            let result1 = joi.validate( {
+              a: 'bird',
+              b: 'plane',
+            }, schema );
+            expect( result1.error ).to.be.null;
+
+            let result2 = joi.validate( {
+              a: 'big@bird.com',
+              b: '',
+            }, schema );
+            expect( result2.error ).to.be.null;
+
+            let result3 = joi.validate( {
+              a: '',
+              b: 'plane',
+            }, schema );
+            expect( result3.error ).to.be.null;
+
+            let result4 = joi.validate( {
+              a: 'bird',
+              b: '',
+            }, schema );
+            expect( result4.error ).to.exist;
+        });
+
+        it( ' when with regex', function() {
+            const config = {
+                a: {
+                    '@type': 'string',
+                    empty: '',
+                },
+                b: {
+                    '@type': 'string',
+                    empty: '',
+                    when: {
+                        condition: 'a',
+                        options: {
+                            is: {
+                                '@type': 'string',
+                                regex: '\\S+@\\S+\\.\\S+',
+                            },
+                            then: {
+                                required: null,
+                            },
+                            otherwise: {
+                                optional: null,
+                            },
+                        },
+                    },
+                },
+            };
+
+            let schema = parser.parse( config );
+
+            expect( schema.isJoi ).to.be.true;
+
+            let result1 = joi.validate( {
+              a: 'bird',
+              b: 'plane',
+            }, schema );
+            expect( result1.error ).to.be.null;
+
+            let result2 = joi.validate( {
+              a: 'big@bird.com',
+              b: '',
+            }, schema );
+            expect( result2.error ).to.exist;
+
+            let result3 = joi.validate( {
+              a: '',
+              b: 'plane',
+            }, schema );
+            expect( result3.error ).to.be.null;
+
+            let result4 = joi.validate( {
+              a: 'bird',
+              b: '',
+            }, schema );
+            expect( result4.error ).to.be.null;
+        });
     });
 });
