@@ -34,7 +34,16 @@ describe( 'lib/whenParser', function() {
                 required: sinon.stub().returns( whenSchema ),
             };
 
+            const optionsShape = {
+                is: whenSchema,
+                then: whenSchema,
+            }
+
             const [ condition, options ] = whenParser.parse( config, engine );
+
+            expect( condition ).to.equal( 'a' );
+
+            expect( options ).to.eql( optionsShape );
 
             expect( engine.string.calledOnce ).to.be.true;
             expect( engine.string.withArgs().calledOnce ).to.be.true;
@@ -72,7 +81,17 @@ describe( 'lib/whenParser', function() {
                 optional: sinon.stub().returns( whenSchema ),
             };
 
+            const optionsShape = {
+                is: whenSchema,
+                then: whenSchema,
+                otherwise: whenSchema,
+            }
+
             const [ condition, options ] = whenParser.parse( config, engine );
+
+            expect( condition ).to.equal( 'a' );
+
+            expect( options ).to.eql( optionsShape );
 
             expect( engine.string.calledOnce ).to.be.true;
             expect( engine.string.withArgs().calledOnce ).to.be.true;
@@ -113,7 +132,19 @@ describe( 'lib/whenParser', function() {
                 required: sinon.stub().returns( whenSchema ),
             };
 
+            const optionsShape = {
+                is: [
+                    whenSchema,
+                    true,
+                ],
+                then: whenSchema,
+            }
+
             const [ condition, options ] = whenParser.parse( config, engine );
+
+            expect( condition ).to.equal( 'a' );
+
+            expect( options ).to.eql( optionsShape );
 
             expect( engine.string.calledOnce ).to.be.true;
             expect( engine.string.withArgs().calledOnce ).to.be.true;
