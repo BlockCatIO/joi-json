@@ -3,16 +3,12 @@
   "description": "Builds Joi schemas from JSON objects",
   "version": "2.0.1",
   "main": "lib/index.js",
-  "keywords": [
-    "validation",
-    "joi",
-    "lov",
-    "json",
-    "schema"
-  ],
+  "keywords": ["validation", "joi", "lov", "json", "schema"],
   "scripts": {
     "test": "./node_modules/.bin/mocha --recursive",
-    "coverage": "./node_modules/.bin/istanbul cover node_modules/mocha/bin/_mocha -- -R spec --recursive"
+    "coverage":
+      "./node_modules/.bin/istanbul cover node_modules/mocha/bin/_mocha -- -R spec --recursive",
+    "build": "babel src -d lib"
   },
   "repository": {
     "type": "git",
@@ -24,6 +20,7 @@
     "vandium-utils": "^1.1.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "chai": "^3.5.0",
     "freshy": "^1.0.2",
     "istanbul": "^0.4.3",

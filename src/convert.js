@@ -1,20 +1,20 @@
 'use strict';
 
-const utils = require('./utils');
+const utils = require( './utils' );
 
-function numberConverter(value) {
+function numberConverter( value ) {
 
-    return Number.parseInt(value);
+    return Number.parseInt( value );
 }
 
-function booleanCoverter(value) {
+function booleanCoverter( value ) {
 
-    if (value === undefined) {
+    if( value === undefined ) {
 
         return true;
     }
 
-    return utils.parseBoolean(value);
+    return utils.parseBoolean( value );
 }
 
 class Converter {
@@ -34,20 +34,20 @@ class Converter {
             sparse: booleanCoverter,
             single: booleanCoverter,
             truncate: booleanCoverter,
-            isRaw: booleanCoverter
+            isRaw: booleanCoverter,
         };
     }
 
-    convert(key, value) {
+    convert( key, value ) {
 
-        let converterFunc = this.converterMap[key];
+        let converterFunc = this.converterMap[ key ];
 
-        if (!converterFunc) {
+        if( !converterFunc ) {
 
             return value;
         }
 
-        return converterFunc(value);
+        return converterFunc( value );
     }
 }
 
@@ -56,16 +56,17 @@ const converters = {
     _default: new Converter()
 };
 
-function convert(type, key, value) {
 
-    let converter = converters[type];
+function convert( type, key, value ) {
 
-    if (!converter) {
+    let converter = converters[ type ];
+
+    if( !converter ) {
 
         converter = converters._default;
     }
 
-    return converter.convert(key, value);
+    return converter.convert( key, value );
 }
 
 module.exports = convert;
