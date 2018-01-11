@@ -22,7 +22,6 @@
   "author": "Vandium Software, Inc.",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "postinstall-build": "^5.0.1",
     "vandium-utils": "^1.1.0"
   },
   "devDependencies": {
