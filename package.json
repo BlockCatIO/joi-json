@@ -13,12 +13,8 @@
   "scripts": {
     "test": "./node_modules/.bin/mocha --recursive",
     "coverage": "./node_modules/.bin/istanbul cover node_modules/mocha/bin/_mocha -- -R spec --recursive",
-    "build": "babel src -d lib",
-    "postinstall": "postinstall-build lib"
+    "prepare": "babel src -d lib"
   },
-  "files": [
-    "lib"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/vandium-io/joi-json.git"
