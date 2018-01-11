@@ -13,5 +13,3 @@ docs
 .jshintrc
 
 .istanbul.yml
-
-src
