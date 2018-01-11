@@ -3,7 +3,7 @@
 const Joi = require( 'joi' );
 
 //const builder = require( 'joi-json' ).builder();
-const builder = require( '..' ).builder();
+const builder = require( '..' ).builder( Joi );
 
 let jsonSchema = {
 

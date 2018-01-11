@@ -2,13 +2,13 @@
 
 /*jshint expr: true*/
 
-const ObjectSchema = require( '../../lib/object' );
+const ObjectSchema = require( '../../src/object' );
 
 const expect = require( 'chai' ).expect;
 
 const sinon = require( 'sinon' );
 
-describe( 'lib/object', function() {
+describe( 'src/object', function() {
 
     describe( 'ObjectSchema', function() {
 

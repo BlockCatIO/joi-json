@@ -33,21 +33,6 @@ class SchemaBuilder {
     }
 }
 
-function resolveEngines() {
-
-    for( let name of arguments ) {
-
-        try {
-
-            return require( name );
-        }
-        catch( err ) {
-
-            // engine not found
-        }
-    }
-}
-
 function parser( engine ) {
 
     return new Parser( engine );
@@ -56,14 +41,9 @@ function parser( engine ) {
 
 function builder( engine ) {
 
-    if( !engine ) {
+    if( !engine || engine === undefined ) {
 
-        engine = resolveEngines( 'joi', 'lov' );
-
-        if( !engine ) {
-
-            throw new Error( 'cannot find validation engine' );
-        }
+        throw new Error( 'missing required validation engine' );
     }
 
     return new SchemaBuilder( parser( engine ) );

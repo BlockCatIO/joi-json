@@ -2,13 +2,13 @@
 
 /*jshint expr: true*/
 
-const AlternativesSchema = require( '../../lib/alternatives' );
+const AlternativesSchema = require( '../../src/alternatives' );
 
 const expect = require( 'chai' ).expect;
 
 const sinon = require( 'sinon' );
 
-describe( 'lib/alternatives', function() {
+describe( 'src/alternatives', function() {
 
     describe( 'AlternativesSchema', function() {
 
