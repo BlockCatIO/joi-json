@@ -13,22 +13,15 @@
   "scripts": {
     "test": "./node_modules/.bin/mocha --recursive",
     "coverage": "./node_modules/.bin/istanbul cover node_modules/mocha/bin/_mocha -- -R spec --recursive",
-    "build": "babel src -d lib",
-    "postinstall": "postinstall-build lib"
+    "prepare": "babel src -d lib"
   },
-  "files": [
-    "lib"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/vandium-io/joi-json.git"
   },
   "author": "Vandium Software, Inc.",
   "license": "BSD-3-Clause",
-  "dependencies": {
-    "postinstall-build": "^5.0.1",
-    "vandium-utils": "^1.1.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
