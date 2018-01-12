@@ -21,7 +21,9 @@
   },
   "author": "Vandium Software, Inc.",
   "license": "BSD-3-Clause",
-  "dependencies": {},
+  "dependencies": {
+    "clone-deep": "^2.0.1"
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
