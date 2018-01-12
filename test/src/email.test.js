@@ -2,13 +2,13 @@
 
 /*jshint expr: true*/
 
-const EmailSchema = require( '../../lib/email' );
+const EmailSchema = require( '../../src/email' );
 
 const expect = require( 'chai' ).expect;
 
 const sinon = require( 'sinon' );
 
-describe( 'lib/email', function() {
+describe( 'src/email', function() {
 
     describe( 'EmailSchema', function() {
 

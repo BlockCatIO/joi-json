@@ -2,11 +2,11 @@
 
 /*jshint expr: true*/
 
-const convert = require( '../../lib/convert' );
+const convert = require( '../../src/convert' );
 
 const expect = require( 'chai' ).expect;
 
-describe( 'lib/convert', function() {
+describe( 'src/convert', function() {
 
     [ 'min', 'max', 'length', 'greater', 'less', 'precision', 'multiple' ].forEach( function( key ) {
 

@@ -14,9 +14,9 @@ const sinon = require( 'sinon' );
 
 const freshy = require( 'freshy' );
 
-const MODULE_PATH = '../../lib';
+const MODULE_PATH = '../../src';
 
-describe( 'lib/index', function() {
+describe( 'src/index', function() {
 
     let index;
 
@@ -277,7 +277,7 @@ describe( 'lib/index', function() {
             expect( result3.error ).to.exist;
         });
 
-        it( ' when ', function() {
+        it( 'when', function() {
             const config = {
                 a: {
                     '@type': 'string',
@@ -330,7 +330,7 @@ describe( 'lib/index', function() {
             expect( result4.error ).to.exist;
         });
 
-        it( ' when with regex', function() {
+        it( 'when with regex', function() {
             const config = {
                 a: {
                     '@type': 'string',
@@ -387,22 +387,23 @@ describe( 'lib/index', function() {
         });
     });
 
-    describe("Joi schema extended with custom type", function() {
+    describe( 'Joi schema extended with custom type', function() {
+
         let parser;
 
         const customJoi = joi.extend(joi => ({
             base: joi.string(),
-            name: "string20",
+            name: 'string20',
             language: {
-                valid: "must be string with less than 20 characters",
+                valid: 'must be string with less than 20 characters',
             },
             rules: [
                 {
-                    name: "valid",
-                    description: "Valid String 20",
+                    name: 'valid',
+                    description: 'Valid String 20',
                     validate(params, value, state, options) {
                         if (value.length >= 20) {
-                            return this.createError("string20.valid", {}, state, options);
+                            return this.createError('string20.valid', {}, state, options);
                         }
                         return value;
                     },
@@ -414,19 +415,20 @@ describe( 'lib/index', function() {
             parser = index.parser(customJoi);
         });
 
-        it("custom type valid and required", function() {
+        it( 'custom type valid and required', function() {
+
             const schema = parser.parse({
-                "@type": "string20",
+                '@type': 'string20',
                 // use null to call with no params.
                 valid: null,
                 required: true,
             });
             expect(schema.isJoi).to.be.true;
-            expect(schema._type).to.equal("string20");
+            expect(schema._type).to.equal('string20');
 
-            expect(schema._tests[0].name).to.equal("valid");
+            expect(schema._tests[0].name).to.equal('valid');
 
-            expect(schema._flags.presence).to.equal("required");
+            expect(schema._flags.presence).to.equal('required');
         });
     });
 });

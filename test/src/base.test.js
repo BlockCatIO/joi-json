@@ -2,13 +2,13 @@
 
 /*jshint expr: true*/
 
-const BaseSchema = require( '../../lib/base' );
+const BaseSchema = require( '../../src/base' );
 
 const expect = require( 'chai' ).expect;
 
 const sinon = require( 'sinon' );
 
-describe( 'lib/base', function() {
+describe( 'src/base', function() {
 
     describe( 'BaseSchema', function() {
 

@@ -2,17 +2,19 @@
 
 /*jshint expr: true*/
 
-const whenParser = require( '../../lib/whenParser' );
+const whenParser = require( '../../src/whenParser' );
 
 const expect = require( 'chai' ).expect;
 
 const sinon = require( 'sinon' );
 
 
-describe( 'lib/whenParser', function() {
+describe( 'src/whenParser', function() {
 
     describe( '.parse', function() {
+
         it( 'normal operation: is, then', function() {
+
             const config = {
                 condition: 'a',
                 options: {
@@ -56,6 +58,7 @@ describe( 'lib/whenParser', function() {
         });
 
         it( 'normal operation: is, then, otherwise', function() {
+
             const config = {
                 condition: 'a',
                 options: {
@@ -107,6 +110,7 @@ describe( 'lib/whenParser', function() {
         });
 
         it( 'normal operation: is, then(with alternatives)', function() {
+
             const config = {
                 condition: 'a',
                 options: {

@@ -8,14 +8,14 @@ function parseSchemaString( value ) {
 
     let schemaString = value;
     // No need to parse if if it isn't config, but just a string.
-    if ( schemaString.indexOf( ':' ) == -1 && schemaString.indexOf( ',' ) == -1 ) {
+    if( schemaString.indexOf( ':' ) == -1 && schemaString.indexOf( ',' ) == -1 ) {
         return schemaString;
     }
 
     let type = null;
     let schema = {};
     // If we have a type, parse it.
-    if ( schemaString.indexOf( ':' ) > -1 ) {
+    if( schemaString.indexOf( ':' ) > -1 ) {
 
         let typeParts = schemaString.split( ':', 2 );
 
@@ -28,7 +28,7 @@ function parseSchemaString( value ) {
     }
 
     // Parse any further config.
-    if ( schemaString.length > 0 ) {
+    if( schemaString.length > 0 ) {
 
         for ( let valuePart of schemaString.split( "," ) ) {
 
@@ -36,7 +36,7 @@ function parseSchemaString( value ) {
             let key = parts[ 0 ].trim();
             let value = parts[ 1 ];
 
-            if ( value ) {
+            if( value ) {
                 value = value.trim();
             }
             else {
@@ -59,7 +59,7 @@ const whenParser = {
         let condition = value.condition ? value.condition : null;
         let options = {};
 
-        if ( value.options ) {
+        if( value.options ) {
             options = whenParser.parseOptions( value.options, engine );
         }
 
@@ -71,7 +71,7 @@ const whenParser = {
         let returnOptions = {};
         let whenOptions = {};
 
-        if ( utils.isString( options ) ) {
+        if( utils.isString( options ) ) {
 
             whenOptions = parseSchemaString( options );
         }
@@ -82,14 +82,14 @@ const whenParser = {
         }
 
         // Only continue if we do have a valid object.
-        if ( utils.isObject( whenOptions ) ) {
+        if( utils.isObject( whenOptions ) ) {
 
             const keys = Object.keys( whenOptions );
             for ( let i = 0; i < keys.length; i += 1 ) {
 
                 const key = keys[ i ];
                 const validOptions = [ "is", "then", "otherwise" ];
-                if ( validOptions.includes( key ) ) {
+                if( validOptions.includes( key ) ) {
 
                     returnOptions[ key ] = whenParser.parseValidOption( whenOptions[key], engine );
                 }
@@ -103,7 +103,7 @@ const whenParser = {
 
         let returnValues = null;
         // Convert array (alternatives).
-        if ( utils.isArray( options ) ) {
+        if( utils.isArray( options ) ) {
 
             returnValues = [];
             for ( let i = 0; i < options.length; i += 1 ) {
@@ -112,7 +112,7 @@ const whenParser = {
             }
         }
         // Convert normal config object.
-        else if ( utils.isObject( options ) ) {
+        else if( utils.isObject( options ) ) {
 
             let schema = engine;
             const keys = Object.keys( options );
@@ -123,17 +123,17 @@ const whenParser = {
                 schema = whenParser.translateValue( key, options[ key ], schema );
             }
 
-            if ( keys.length > 0 ) {
+            if( keys.length > 0 ) {
 
               returnValues = schema;
             }
         }
         // Check to convert string to object.
-        else if ( utils.isString(options) ) {
+        else if( utils.isString(options) ) {
 
             const expandedOptions = parseSchemaString( options );
             // Did we get a config object?
-            if ( utils.isObject( expandedOptions ) ) {
+            if( utils.isObject( expandedOptions ) ) {
 
                 returnValues = whenParser.parseValidOption( expandedOptions, engine );
             }
@@ -154,20 +154,21 @@ const whenParser = {
 
         let optionValue = value;
         // Handle special case of @type, where type is the function name.
-        if ( key === '@type' ) {
+        if( key === '@type' ) {
 
           return schema[ optionValue ]();
         }
 
         // All other config will have the key be the function name.
-        if ( utils.isFunction( schema[ key ] ) ) {
+        if( utils.isFunction( schema[ key ] ) ) {
 
-            if ( key === 'regex' && !optionValue instanceof RegExp ) {
+            // Convert to regexp object if needed.
+            if( key === 'regex' && !( optionValue instanceof RegExp ) ) {
 
                 optionValue = new RegExp( optionValue );
             }
 
-            if ( optionValue === null ) {
+            if( optionValue === null ) {
 
                 return schema[ key ]();
             }

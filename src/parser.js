@@ -47,7 +47,7 @@ function parseSchemaString( str ) {
 
     let typeParts = str.split( ':', 2 );
 
-    let type = typeParts[0];
+    let type = typeParts[ 0 ];
 
     let schema = {
 
@@ -56,13 +56,13 @@ function parseSchemaString( str ) {
 
     if( typeParts.length > 1 ) {
 
-        for( let valuePart of typeParts[1].split( ',' ) ) {
+        for( let valuePart of typeParts[ 1 ].split( ',' ) ) {
 
             let parts = valuePart.split( '=', 2 );
 
-            let key = parts[0].trim();
+            let key = parts[ 0 ].trim();
 
-            let value = parts[1];
+            let value = parts[ 1 ];
 
             if( value ) {
 
@@ -126,7 +126,7 @@ function parseSchema( value, engine ) {
     // Custom type - use Base schema parser.
     // If our engine has the custom type as a function,
     // allow usage of the type, treating it like any other simple type.
-    else if ( utils.isFunction(engine[ type ]) ) {
+    else if ( utils.isFunction( engine[ type ] ) ) {
 
         schemaParser = new BaseSchema( type );
     }
