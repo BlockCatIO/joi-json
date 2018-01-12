@@ -1,7 +1,8 @@
-"use strict";
+'use strict';
 
-const convert = require("./convert");
-const utils = require("./utils");
+const cloneDeep = require( 'clone-deep' );
+const convert = require( './convert' );
+const utils = require( './utils' );
 
 // Mostly a copy of ./parser.js/parseSchemaString, slightly modified.
 function parseSchemaString( value ) {
@@ -21,7 +22,7 @@ function parseSchemaString( value ) {
 
         type = typeParts[ 0 ];
         schema = {
-            "@type": type,
+            '@type': type,
         };
         // Reset the string to parse the rest.
         schemaString = typeParts[ 1 ];
@@ -30,7 +31,7 @@ function parseSchemaString( value ) {
     // Parse any further config.
     if( schemaString.length > 0 ) {
 
-        for ( let valuePart of schemaString.split( "," ) ) {
+        for ( let valuePart of schemaString.split( ',' ) ) {
 
             const parts = valuePart.split( '=', 2 );
             let key = parts[ 0 ].trim();
@@ -88,7 +89,7 @@ const whenParser = {
             for ( let i = 0; i < keys.length; i += 1 ) {
 
                 const key = keys[ i ];
-                const validOptions = [ "is", "then", "otherwise" ];
+                const validOptions = [ 'is', 'then', 'otherwise' ];
                 if( validOptions.includes( key ) ) {
 
                     returnOptions[ key ] = whenParser.parseValidOption( whenOptions[key], engine );
@@ -108,13 +109,13 @@ const whenParser = {
             returnValues = [];
             for ( let i = 0; i < options.length; i += 1 ) {
 
-                returnValues[i] = whenParser.parseValidOption( options[ i ], engine );
+                returnValues[ i ] = whenParser.parseValidOption( options[ i ], engine );
             }
         }
         // Convert normal config object.
         else if( utils.isObject( options ) ) {
 
-            let schema = engine;
+            let schema = cloneDeep( engine );
             const keys = Object.keys( options );
             for ( let i = 0; i < keys.length; i += 1 ) {
 
@@ -129,7 +130,7 @@ const whenParser = {
             }
         }
         // Check to convert string to object.
-        else if( utils.isString(options) ) {
+        else if( utils.isString( options ) ) {
 
             const expandedOptions = parseSchemaString( options );
             // Did we get a config object?
