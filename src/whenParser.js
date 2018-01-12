@@ -79,7 +79,7 @@ const whenParser = {
         // Copy, don't mutate.
         else {
 
-            whenOptions = { ...options };
+            whenOptions = Object.assign( {}, options );
         }
 
         // Only continue if we do have a valid object.
