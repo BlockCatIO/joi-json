@@ -35,19 +35,17 @@ describe( 'src/index', function() {
 
     describe( '.builder', function() {
 
-        it( 'using defaults', function() {
+        it( 'use joi as engine', function() {
 
-            let builder = index.builder();
+            let builder = index.builder( joi );
 
             expect( builder.constructor.name ).to.equal( 'SchemaBuilder' );
             expect( builder.parser.engine ).to.equal( joi );
         });
 
-        it( 'use lov when joi is not present', function() {
+        it( 'use lov as engine', function() {
 
-            requireBlocker.block( 'joi' );
-
-            let builder = index.builder();
+            let builder = index.builder( lov );
 
             expect( builder.constructor.name ).to.equal( 'SchemaBuilder' );
             expect( builder.parser.engine ).to.equal( lov );
@@ -63,11 +61,9 @@ describe( 'src/index', function() {
             expect( builder.parser.engine ).to.equal( customEngine );
         });
 
-        it( 'fail: when engines do not exist', function() {
+        it( 'fail: when no engine passed in', function() {
 
-            requireBlocker.block( 'joi', 'lov' );
-
-            expect( index.builder.bind( null ) ).to.throw( 'cannot find validation engine' );
+            expect( index.builder.bind( null ) ).to.throw( 'missing required validation engine' );
         });
     });
 
