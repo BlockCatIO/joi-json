@@ -3,7 +3,9 @@
 ```js
 'use strict';
 
-const builder = require( 'joi-json' ).builder();
+const joi = require( 'joi' );
+
+const builder = require( 'joi-json' ).builder( joi );
 
 let jsonSchema = {
 

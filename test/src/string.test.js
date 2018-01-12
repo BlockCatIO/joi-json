@@ -2,13 +2,13 @@
 
 /*jshint expr: true*/
 
-const StringSchema = require( '../../lib/string' );
+const StringSchema = require( '../../src/string' );
 
 const expect = require( 'chai' ).expect;
 
 const sinon = require( 'sinon' );
 
-describe( 'lib/string', function() {
+describe( 'src/string', function() {
 
     describe( 'StringSchema', function() {
 

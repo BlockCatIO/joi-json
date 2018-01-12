@@ -2,7 +2,7 @@
 
 /*jshint expr: true*/
 
-const UUIDSchema = require( '../../lib/uuid' );
+const UUIDSchema = require( '../../src/uuid' );
 
 const expect = require( 'chai' ).expect;
 
@@ -10,7 +10,7 @@ const sinon = require( 'sinon' );
 
 const CONTROL_UUID_REGEX = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
 
-describe( 'lib/uuid', function() {
+describe( 'src/uuid', function() {
 
     describe( 'uuidSchema', function() {
 

@@ -2,13 +2,13 @@
 
 /*jshint expr: true*/
 
-const ArraySchema = require( '../../lib/array' );
+const ArraySchema = require( '../../src/array' );
 
 const expect = require( 'chai' ).expect;
 
 const sinon = require( 'sinon' );
 
-describe( 'lib/array', function() {
+describe( 'src/array', function() {
 
     describe( 'ArraySchema', function() {
 

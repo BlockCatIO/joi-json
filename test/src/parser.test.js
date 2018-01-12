@@ -2,13 +2,13 @@
 
 /*jshint expr: true*/
 
-const Parser = require( '../../lib/parser' );
+const Parser = require( '../../src/parser' );
 
 const expect = require( 'chai' ).expect;
 
 const sinon = require( 'sinon' );
 
-describe( 'lib/parser', function() {
+describe( 'src/parser', function() {
 
     let engine;
 
